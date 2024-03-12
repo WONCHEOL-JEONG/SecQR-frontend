@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "SecQR",
+    "version": "1.0",
+    "description": "Securely scan & block malicious QR codes",
+    "icons": {
+        "128": "icons/icon.png"
+    },
+    "action": {
+        "default_icon": "icons/icon.png",
+        "default_title": "SecQR",
+        "default_popup": "popup/popup.html",
+        "browser_style": false
+    },
+    "permissions": ["tabs", "clipboardRead"]
+}
