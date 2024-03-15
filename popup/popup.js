@@ -1,4 +1,3 @@
-// 이 부분에 버튼 클릭에 대한 동작을 추가할 수 있습니다.
 document.getElementById('qrButton').addEventListener('click', function () {
     // 버튼 1에 대한 동작
 });
