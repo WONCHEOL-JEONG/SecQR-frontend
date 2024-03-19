@@ -1,5 +1,9 @@
 document.getElementById('qrButton').addEventListener('click', function () {
-    // 버튼 1에 대한 동작
+    const button1 = document.getElementById('button1');
+    button1.addEventListener('click', function () {
+        const newPageURL = 'newpage.html';
+        chrome.tabs.create({ url: chrome.runtime.getURL(newPageURL) });
+    });
 });
 
 document.getElementById('button2').addEventListener('click', function () {
