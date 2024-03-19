@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>SecQR</title>
-        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="../css/qr-scan.css" />
     </head>
     <body>
         <div id="SecQR-popup"></div>
@@ -40,7 +40,8 @@
                     <img src="/images/history.png" alt="history" class="history-image" />
                     <p class="history-text">History</p>
                 </button>
-
+            </div>
+            <div>
                 <button class="button fileupload-button">
                     <img src="/images/upload.png" alt="upload" class="upload-image" />
                     <p class="upload-text">파일 업로드</p>
@@ -57,13 +58,14 @@
             </div>
 
             <div class="url-input-container">
-                <input type="text" id="urlInput" placeholder="URL 입력" class="url-input">
+                <input type="text" id="urlInput" placeholder="URL 입력" class="url-input" />
                 <button id="submitUrlButton" class="submit-url-button">확인</button>
             </div>
-            
+
             <div class="openurl-container">
                 <p class="openurl-text">openurl</p>
             </div>
         </div>
+        <script src="../js/qr-scan.js"></script>
     </body>
 </html>

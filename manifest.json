@@ -9,7 +9,7 @@
     "action": {
         "default_icon": "icons/icon.png",
         "default_title": "SecQR",
-        "default_popup": "popup/popup.html",
+        "default_popup": "html/main.html",
         "browser_style": false
     },
     "permissions": ["tabs", "clipboardRead"]
