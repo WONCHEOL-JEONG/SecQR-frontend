@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>SecQR</title>
-        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="../css/main.css" />
     </head>
     <body>
         <div id="SecQR-popup"></div>
@@ -21,26 +21,28 @@
                 <label for="block-url">url을 차단할까요?</label>
             </div>
             <div class="button-container">
-                <button class="button scan-button">
+                <button class="button scan-button" id="scan">
                     <img src="/images/scan.png" alt="scan" class="scan-image" />
                     <p class="scan-text">QR 스캔</p>
                 </button>
 
-                <button class="button document-button">
+                <button class="button document-button" id="document">
                     <img src="/images/document.png" alt="document" class="document-image" />
                     <p class="document-text">url 정보</p>
                 </button>
 
-                <button class="button qr-button">
+                <button class="button qr-button" id="qrcode">
                     <img src="/images/qr code.png" alt="qr" class="qr-image" />
                     <p class="qr-text">QR 생성</p>
                 </button>
 
-                <button class="button history-button">
+                <button class="button history-button" id="history">
                     <img src="/images/history.png" alt="history" class="history-image" />
                     <p class="history-text">History</p>
                 </button>
             </div>
         </div>
+
+        <script src="../js/main.js"></script>
     </body>
 </html>
