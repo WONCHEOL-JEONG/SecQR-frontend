@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SecQR</title>
+        <link rel="stylesheet" href="../css/qr-scan.css"/>
+    </head>
+    <body>
+        <div id="SecQR-popup"></div>
+        <div class="container">
+            <div class="header">
+                <img src="/icons/logo.png" alt="SecQR Logo" class="logo" />
+                <div class="title-container">
+                    <p class="title">SecQR</p>
+                    <p class="subtitle">Securely scan & block malicious QR codes</p>
+                </div>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" id="block-url" />
+                <label for="block-url">url을 차단할까요?</label>
+            </div>
+            <div class="button-container">
+                <div class ="button-group1">
+                    <button class="button scan-button">
+                        <img src="/images/scan.png" alt="scan" class="scan-image" />
+                        <p class="scan-text">QR 스캔</p>
+                    </button>
+
+                    <button class="button document-button">
+                        <img src="/images/document.png" alt="document" class="document-image" />
+                        <p class="document-text">url 정보</p>
+                    </button>
+
+                    <button class="button qr-button">
+                        <img src="/images/qr code.png" alt="qr" class="qr-image" />
+                        <p class="qr-text">QR 생성</p>
+                    </button>
+
+                    <button class="button history-button">
+                        <img src="/images/history.png" alt="history" class="history-image" />
+                        <p class="history-text">History</p>
+                    </button>
+                </div>
+
+                <div class="button-group">
+                    <button class="button fileupload-button">
+                        <img src="/images/upload.png" alt="upload" class="upload-image" />
+                        <p class="upload-text">파일 업로드</p>
+                        <input type="file" id="file-upload" style="display: none;">
+                    </button>
+                    <script src="../js/qr-scan.js"></script>
+
+                    <button class="button clipboard-button">
+                        <img src="/images/upload.png" alt="upload" class="upload-image" />
+                        <p class="clipboard-text">클립보드</p>
+                    </button>
+                </div>
+            </div>
+
+            <div id="qrCodeContainer">
+                <!-- 업로드한 QR 코드 이미지 보여주기 -->
+            </div>
+
+            <div class="url-input-container">
+                <input type="text" id="urlInput" placeholder="URL 입력" class="url-input">
+                <button id="submitUrlButton" class="submit-url-button">확인</button>
+            </div>
+            
+            <div class="openurl-container">
+                <p class="openurl-text">openurl</p>
+            </div>
+        </div>
+    </body>
+</html>
