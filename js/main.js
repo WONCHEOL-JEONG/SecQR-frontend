@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('qrcode').addEventListener('click', function () {
-        // 버튼 3에 대한 동작
+        window.location.href = 'generate.html';
     });
 
     document.getElementById('history').addEventListener('click', function () {
