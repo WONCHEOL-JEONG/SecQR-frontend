@@ -358,4 +358,42 @@ body {
     background-color: #595959; /* 호버 시 배경색 변경 */
 }
 
+.box {
+    margin: 5px;
+    padding: 25px;
+    border: dashed 3px dodgerblue;
+    text-align: center;
+    cursor: copy;
+}
 
+.box:hover {
+    background-color: #2195f33f;
+}
+
+.result {
+    margin: 5px;
+    padding: 5px;
+}
+
+.btn {
+    background-color: #ececec;
+    padding: 10px 20x;
+    border: none
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    margin: 5px;
+    width: 95%;
+    outline: none;
+}
+
+.info {
+    border-color: #595959;  
+    border-radius: 5px;
+    height: 30px
+}
+
+.info:hover {
+    background: #595959;
+    color: white;
+}
