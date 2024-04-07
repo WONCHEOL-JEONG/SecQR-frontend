@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>SecQR</title>
-        <link rel="stylesheet" href="../css/qr-scan.css" />
+        <link rel="stylesheet" href="../css/qr-scan.css"/>
     </head>
     <body>
         <div id="SecQR-popup"></div>
@@ -21,31 +21,33 @@
                 <label for="block-url">url을 차단할까요?</label>
             </div>
             <div class="button-container">
-                <button class="button scan-button">
+                <button class="button scan-button" id="scan">
                     <img src="/images/scan.png" alt="scan" class="scan-image" />
                     <p class="scan-text">QR 스캔</p>
                 </button>
 
-                <button class="button document-button">
+                <button class="button document-button" id="document">
                     <img src="/images/document.png" alt="document" class="document-image" />
                     <p class="document-text">url 정보</p>
                 </button>
 
-                <button class="button qr-button">
+                <button class="button qr-button" id="qrcode">
                     <img src="/images/qr code.png" alt="qr" class="qr-image" />
                     <p class="qr-text">QR 생성</p>
                 </button>
 
-                <button class="button history-button">
+                <button class="button history-button" id="history">
                     <img src="/images/history.png" alt="history" class="history-image" />
                     <p class="history-text">History</p>
                 </button>
             </div>
-            <div>
+            <div class="button-group">
                 <button class="button fileupload-button">
                     <img src="/images/upload.png" alt="upload" class="upload-image" />
                     <p class="upload-text">파일 업로드</p>
+                    <input type="file" id="file-upload" style="display: none;">
                 </button>
+                <script src="../js/qr-scan.js"></script>
 
                 <button class="button clipboard-button">
                     <img src="/images/upload.png" alt="upload" class="upload-image" />
@@ -58,14 +60,23 @@
             </div>
 
             <div class="url-input-container">
-                <input type="text" id="urlInput" placeholder="URL 입력" class="url-input" />
+                <input type="text" id="urlInput" placeholder="URL 입력" class="url-input">
                 <button id="submitUrlButton" class="submit-url-button">확인</button>
             </div>
-
-            <div class="openurl-container">
-                <p class="openurl-text">openurl</p>
+            <div id="pasteArea" class="box" contenteditable="false" class="info">
+                Click Here! Then paste(Ctrl+V) image that include QR code.
             </div>
+            <img id="clipboardImage" />
+            <canvas id="canvas_for_ImageData" style="display: none"></canvas>
+            <div id="decodeResult" class="result" contenteditable="true"></div>
+            
+            <button id="button_OpenUrl" class="btn info">Open Url</button>
+
+            </div>
+            
         </div>
-        <script src="../js/qr-scan.js"></script>
     </body>
+    <script src="../js/jsQR.js"></script>
+    <script src="../js/clippopup.js"></script>
+    <script src="../js/main.js"></script>
 </html>
