@@ -27,9 +27,12 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('URL을 입력하세요.');
             return;
         }
+        // 둥근 네모 박스 생성
+        const roundedBox = document.createElement('div');
+        roundedBox.classList.add('rounded-box');
 
         // QR 코드 생성
-        const qrCode = new QRCode(qrCodeContainer, {
+        const qrCode = new QRCode(roundedBox, {
             text: url,
             width: 128,
             height: 128,
@@ -38,12 +41,18 @@ document.addEventListener('DOMContentLoaded', function () {
             correctLevel: QRCode.CorrectLevel.H,
         });
 
+        // 기존 QR 코드 및 다운로드 버튼 제거
+        qrCodeContainer.innerHTML = '';
+        downloadContainer.innerHTML = '';
+
+        // 둥근 네모 박스에 QR 코드 추가
+        qrCodeContainer.appendChild(roundedBox);
+
         // 다운로드 버튼 생성
         const downloadBtn = document.createElement('a');
         downloadBtn.textContent = '다운로드';
         downloadBtn.href = qrCode._el.firstChild.toDataURL('image/png');
         downloadBtn.download = 'qr_code.png';
-        downloadContainer.innerHTML = ''; // 기존 다운로드 버튼 제거
         downloadContainer.appendChild(downloadBtn);
     });
 });

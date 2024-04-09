@@ -6,13 +6,13 @@ body {
     background: white;
     width: 310px;
     height: 185px;
+    padding: 15px;
+    border-radius: 10px;
 }
 
 .header {
     display: flex;
     align-items: center;
-    background-color: white;
-    border-radius: 15px;
 }
 
 .logo {
@@ -42,11 +42,22 @@ body {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
+.button-group {
+    display: flex; /* 요소를 수평으로 배열 */
+    justify-content: center; /* 요소들을 수평 방향으로 가운데 정렬 */
+    margin-top: 15px; /* 위쪽 여백 추가 */
+}
+
+.button-group1 {
+    display: flex; /* 요소를 수평으로 배열 */
+    justify-content: center; /* 요소들을 수평 방향으로 가운데 정렬 */
+    margin-top: 10px; /* 위쪽 여백 추가 */
+}
 .button {
     padding: 10px 10px;
-    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -59,9 +70,6 @@ body {
     margin-right: 0;
 }
 
-.button:hover {
-    background-color: #0056b3;
-}
 .checkbox-container {
     margin-top: 20px; /* 로고와 버튼 사이의 간격 설정 */
     display: flex;
@@ -235,4 +243,80 @@ body {
     align-items: center;
     justify-content: center;
     /* 다른 스타일링 속성들 */
+}
+
+.url-input-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px; /* 위쪽 여백 추가 */
+}
+
+.url-input {
+    width: 250px; /* 입력란의 너비 설정 */
+    height: 20px; /* 입력란의 높이 설정 */
+    padding: 5px; /* 내부 여백 설정 */
+    border: 1px solid #ccc; /* 테두리 스타일 설정 */
+    border-radius: 5px; /* 모서리 둥글게 설정 */
+    margin-right: 10px; /* 입력란과 버튼 사이 간격 설정 */
+}
+
+.generateBtn {
+    height: 30px;
+    width: 40px;
+    padding: 7px 7px; /* 버튼 내부 여백 설정 */
+    background-color: #d9d9d9; /* 배경색 설정 */
+    color: white; /* 글자색 설정 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 설정 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+}
+
+.generateBtn:hover {
+    background-color: #595959; /* 호버 시 배경색 변경 */
+}
+
+#downloadContainer a {
+    background-color: #ececec;
+    padding: 10px 20x;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    margin: 5px;
+    width: 90%;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+#downloadContainer a:hover {
+    background: #595959;
+    color: white;
+}
+
+.rounded-box {
+    width: 270px;
+    height: 230px;
+    border-radius: 10px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 4px 8px rgba(2, 2, 3, 0.1);
+    margin-bottom: 20px;
+}
+
+#qrCodeContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#downloadContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
