@@ -43,11 +43,13 @@
                 </button>
             </div>
             <div class="url-input-container">
-                <input type="text" id="urlInput" placeholder="URL을 입력하세요" />
-                <button id="generateBtn">생성</button>
+                <input type="text" id="urlInput" placeholder="URL을 입력하세요" class="url-input" />
+                <button id="generateBtn" class="generateBtn">생성</button>
             </div>
-            <div id="qrCodeContainer"></div>
-            <div id="downloadContainer"></div>
+            <div id="qrContainer">
+                <div id="qrCodeContainer"></div>
+                <div id="downloadContainer"></div>
+            </div>
         </div>
 
         <script src="../js/qrcode.min.js"></script>

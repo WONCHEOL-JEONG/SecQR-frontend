@@ -4,8 +4,8 @@ function openURLInNewTab(url) {
 }
 
 // 검색 버튼 클릭 시 동작할 함수
-document.getElementById('search-button').addEventListener('click', function () {
-    var url = document.getElementById('url-box').value;
+document.getElementById('submitUrlButton').addEventListener('click', function () {
+    var url = document.getElementById('urlInput').value;
     openURLInNewTab(url);
 });
 
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const infoText = document.getElementById('info-text');
 
     infoButton.addEventListener('click', function () {
-        const urlBox = document.getElementById('url-box');
+        const urlBox = document.getElementById('urlInput');
         if (urlBox.value.trim() === '') {
             // 입력된 URL이 없는 경우 삼각형 버튼 클릭해도 아무것도 안 뜨게 함
             infoText.style.display = 'none';

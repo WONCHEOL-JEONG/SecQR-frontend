@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "SecQR",
+    "name": "SecQR React",
     "version": "1.0",
     "description": "Securely scan & block malicious QR codes",
     "icons": {
@@ -12,5 +12,5 @@
         "default_popup": "html/main.html",
         "browser_style": false
     },
-    "permissions": ["tabs", "clipboardRead"]
+    "permissions": ["tabs", "clipboardRead", "activeTab", "clipboardWrite", "storage"]
 }
