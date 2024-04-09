@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "SecQR React",
+    "name": "SecQR",
     "version": "1.0",
     "description": "Securely scan & block malicious QR codes",
     "icons": {
