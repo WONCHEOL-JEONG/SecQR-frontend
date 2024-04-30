@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>SecQR</title>
-        <link rel="stylesheet" href="../css/qr-scan.css"/>
+        <link rel="stylesheet" href="../css/qr-scan.css" />
     </head>
     <body>
         <div id="SecQR-popup"></div>
@@ -42,41 +42,34 @@
                 </button>
             </div>
             <div class="button-group">
-                <button class="button fileupload-button">
+                <button class="button fileupload-button" id="fileUploadButton">
                     <img src="/images/upload.png" alt="upload" class="upload-image" />
                     <p class="upload-text">파일 업로드</p>
-                    <input type="file" id="file-upload" style="display: none;">
+                    <input type="file" id="file-upload" style="display: none" />
                 </button>
-                <script src="../js/qr-scan.js"></script>
 
-                <button class="button clipboard-button">
+                <button class="button clipboard-button" id="clipboardButton">
                     <img src="/images/upload.png" alt="upload" class="upload-image" />
                     <p class="clipboard-text">클립보드</p>
                 </button>
             </div>
-
+            <div id="pasteArea" class="box info" contenteditable="false" style="display: none">
+                Click Here! Then paste(Ctrl+V) image that include QR code.
+            </div>
             <div id="qrCodeContainer">
                 <!-- 업로드한 QR 코드 이미지 보여주기 -->
             </div>
 
             <div class="url-input-container">
-                <input type="text" id="urlInput" placeholder="URL 입력" class="url-input">
+                <input type="text" id="urlInput" placeholder="URL 입력" class="url-input" />
                 <button id="submitUrlButton" class="submit-url-button">확인</button>
             </div>
-            <div id="pasteArea" class="box" contenteditable="false" class="info" style="display: none;">
-                Click Here! Then paste(Ctrl+V) image that include QR code.
-            </div>
-            <img id="clipboardImage" />
-            <canvas id="canvas_for_ImageData" style="display: none";></canvas>
-            <div id="decodeResult" class="result" contenteditable="true"></div>
-            
-            <button id="button_OpenUrl" class="btn info">Open Url</button>
 
-            </div>
-            
+            <button id="button_OpenUrl" class="button info">Open Url</button>
         </div>
     </body>
+    <script src="../js/qr-scan.js"></script>
+
+    <!-- 기능 요소 -->
     <script src="../js/jsQR.js"></script>
-    <script src="../js/clippopup.js"></script>
-    <script src="../js/qr-scan-page-move.js"></script>
 </html>
