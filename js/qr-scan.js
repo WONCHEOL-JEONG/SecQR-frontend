@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const image = new Image();
                     image.onload = function () {
                         qrCodeContainer.innerHTML = ''; // 이전 내용 지우기
-                        qrCodeContainer.appendChild(image); // 이미지 추가
+                        qrCodeContainer.appendChild(image);
                         if (isQRCode(image)) {
                             decodeQRCode(image); // 이미지 표시 후 QR 코드 해독
                         } else {

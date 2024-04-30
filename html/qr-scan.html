@@ -52,6 +52,10 @@
                     <img src="/images/upload.png" alt="upload" class="upload-image" />
                     <p class="clipboard-text">클립보드</p>
                 </button>
+                <button class="button capture-button" id="captureButton">
+                    <img src="/images/upload.png" alt="upload" class="upload-image" />
+                    <p class="clipboard-text">캡처</p>
+                </button>
             </div>
             <div id="pasteArea" class="box info" contenteditable="false" style="display: none">
                 Click Here! Then paste(Ctrl+V) image that include QR code.
@@ -64,6 +68,7 @@
                 <input type="text" id="urlInput" placeholder="URL 입력" class="url-input" />
                 <button id="submitUrlButton" class="submit-url-button">확인</button>
             </div>
+            <button id="button_windowscan" class="button windowscan">화면 스캔 시작</button>
 
             <button id="button_OpenUrl" class="button info">Open Url</button>
         </div>
@@ -72,4 +77,5 @@
 
     <!-- 기능 요소 -->
     <script src="../js/jsQR.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </html>
