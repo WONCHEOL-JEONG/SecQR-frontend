@@ -1,17 +1,16 @@
+// main.js
+
+// 공통 이벤트 핸들러 함수
+function addButtonClickHandler(buttonId, targetPage) {
+    document.getElementById(buttonId).addEventListener('click', function () {
+        window.location.href = targetPage;
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('scan').addEventListener('click', function () {
-        window.location.href = 'qr-scan.html';
-    });
-
-    document.getElementById('document').addEventListener('click', function () {
-        window.location.href = 'url-info.html';
-    });
-
-    document.getElementById('qrcode').addEventListener('click', function () {
-        window.location.href = 'generate.html';
-    });
-
-    document.getElementById('history').addEventListener('click', function () {
-        // 버튼 4에 대한 동작
-    });
+    // 각 버튼에 대한 이벤트 핸들러 추가
+    addButtonClickHandler('scan', 'qr-scan.html');
+    addButtonClickHandler('document', 'url-info.html');
+    addButtonClickHandler('qrcode', 'generate.html');
+    addButtonClickHandler('history', 'history.html');
 });

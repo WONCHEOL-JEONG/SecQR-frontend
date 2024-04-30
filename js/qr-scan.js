@@ -1,7 +1,30 @@
+function addButtonClickHandler(buttonId, targetPage) {
+    document.getElementById(buttonId).addEventListener('click', function () {
+        window.location.href = targetPage;
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
+    // 각 버튼에 대한 이벤트 핸들러 추가
+    addButtonClickHandler('scan', 'qr-scan.html');
+    addButtonClickHandler('document', 'url-info.html');
+    addButtonClickHandler('qrcode', 'generate.html');
+    addButtonClickHandler('history', 'history.html');
+
+    // 클립보드 버튼 이벤트 핸들러
+    document.querySelector('.clipboard-button').addEventListener('click', function () {
+        // 클립보드 버튼 클릭 시 실행될 코드
+        document.getElementById('pasteArea').style.display = 'block'; // pasteArea 요소를 표시
+        document.getElementById('clipboardImage').style.display = 'block'; // clipboardImage 요소를 표시
+        document.getElementById('canvas_for_ImageData').style.display = 'block'; // canvas_for_ImageData 요소를 표시
+        document.getElementById('decodeResult').style.display = 'block'; // decodeResult 요소를 표시
+        document.getElementById('button_OpenUrl').style.display = 'block'; // button_OpenUrl 요소를 표시
+    });
+
     const fileInput = document.getElementById('file-upload');
     const fileUploadButton = document.querySelector('.fileupload-button');
     const qrCodeContainer = document.getElementById('qrCodeContainer');
+    const urlInput = document.getElementById('urlInput');
 
     fileUploadButton.addEventListener('click', function () {
         fileInput.click();
@@ -12,122 +35,98 @@ document.addEventListener('DOMContentLoaded', function () {
         if (file) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                // 이미지를 불러와서 사용하거나 처리하는 코드를 작성합니다.
                 const image = new Image();
                 image.onload = function () {
-                    const maxWidth = qrCodeContainer.offsetWidth;
-                    const maxHeight = qrCodeContainer.offsetHeight;
-
-                    let width = image.width;
-                    let height = image.height;
-
-                    // 이미지 크기를 qrCodeContainer의 크기에 맞게 조절합니다.
-                    if (width > maxWidth) {
-                        height *= maxWidth / width;
-                        width = maxWidth;
+                    qrCodeContainer.innerHTML = ''; // 이전 내용 지우기
+                    qrCodeContainer.appendChild(image);
+                    if (isQRCode(image)) {
+                        decodeQRCode(image); // 이미지 표시 후 QR 코드 해독
+                    } else {
+                        urlInput.value = ''; // QR 코드가 아닌 경우 URL 입력 초기화
                     }
-                    if (height > maxHeight) {
-                        width *= maxHeight / height;
-                        height = maxHeight;
-                    }
-
-                    image.width = width;
-                    image.height = height;
-
-                    qrCodeContainer.innerHTML = ''; // 기존 이미지 지우기
-                    qrCodeContainer.appendChild(image); // 새로운 이미지 추가
                 };
                 image.src = e.target.result;
             };
             reader.readAsDataURL(file);
         }
     });
-});
-// document.getElementById('scan-button').addEventListener('click', function () {
-//     const button1 = document.getElementById('openurl-container');
-//     button1.addEventListener('click', function () {
-//         const newPageURL = 'qr-scan.html';
-//         chrome.tabs.create({ url: chrome.runtime.getURL(newPageURL) });
-//     });
-// });
 
-(function () {
-    if (!('browser' in window)) {
-        window.browser = chrome;
+    let elem = document.getElementById('pasteArea');
+    if (elem) {
+        elem.addEventListener('click', (e) => {
+            elem.style.backgroundColor = '#D5FFD1';
+        });
     }
 
-    let elem = document.querySelector('#pasteArea');
-    elem.addEventListener('click', (e) => {
-        elem.style.backgroundColor = '#D5FFD1';
-    });
     elem.addEventListener('paste', function (e) {
-        //guard non image contents.
-        //reference: https://qiita.com/tatesuke/items/00de1c6be89bad2a6a72
-        if (
-            !e.clipboardData ||
-            !e.clipboardData.types ||
-            e.clipboardData.types.length != 1 ||
-            e.clipboardData.types[0] != 'Files'
-        ) {
-            return true;
-        }
+        if (!e.clipboardData || !e.clipboardData.items) return;
 
-        //Get image from clipboard as file
-        let imageFile = e.clipboardData.items[0].getAsFile();
-
-        //get canvas element and context
-        const canvas = document.querySelector('#canvas_for_ImageData');
-        const context = canvas.getContext('2d');
-
-        //Create Image object
-        const chara = new Image();
-        //execute when image loaded to Image object
-        chara.onload = (e) => {
-            //draw loaded image on canvas
-            context.drawImage(chara, 0, 0, canvas.width, canvas.height);
-
-            //get ImageData from canvas
-            let imgData = context.getImageData(0, 0, canvas.width, canvas.height);
-
-            //Decode QR code in the image.
-            let qr = jsQR(imgData.data, imgData.width, imgData.height);
-            if (qr) {
-                console.log('Found', qr);
-                document.querySelector('#decodeResult').textContent = qr.data;
+        // 클립보드에서 이미지를 가져옵니다.
+        for (let i = 0; i < e.clipboardData.items.length; i++) {
+            if (e.clipboardData.items[i].type.indexOf('image') !== -1) {
+                let imageFile = e.clipboardData.items[i].getAsFile();
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const image = new Image();
+                    image.onload = function () {
+                        qrCodeContainer.innerHTML = ''; // 이전 내용 지우기
+                        qrCodeContainer.appendChild(image); // 이미지 추가
+                        if (isQRCode(image)) {
+                            decodeQRCode(image); // 이미지 표시 후 QR 코드 해독
+                        } else {
+                            urlInput.value = ''; // QR 코드가 아닌 경우 URL 입력 초기화
+                        }
+                    };
+                    image.src = event.target.result;
+                };
+                reader.readAsDataURL(imageFile);
             }
-        };
-
-        let fr = new FileReader();
-        fr.onload = function (e) {
-            let base64 = e.target.result;
-            //for preview
-            document.querySelector('#clipboardImage').src = base64;
-
-            //Set image to Image object
-            //onload event will be fired.
-            chara.src = base64;
-        };
-
-        //Read image data from image file
-        fr.readAsDataURL(imageFile);
+        }
     });
 
     let button_newTab = document.querySelector('#button_OpenUrl');
     button_newTab.addEventListener('click', (e) => {
-        console.log('Open Url');
-
-        let url = document.querySelector('#decodeResult').innerText;
+        let url = urlInput.value;
         if (url === '') {
             return;
         }
-
-        browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-            let index = tabs[0].index;
-
-            //Open the url on tab that next to current tab
-            browser.tabs.create({ url: url, index: index + 1 });
-
-            window.close();
-        });
+        window.open(url, '_blank');
     });
-})();
+
+    // QR 코드 이미지를 디코딩하여 URL을 추출하는 함수
+    function decodeQRCode(image) {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = image.width;
+        canvas.height = image.height;
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        const code = jsQR(imageData.data, imageData.width, imageData.height);
+        if (code) {
+            urlInput.value = code.data;
+        } else {
+            console.error('QR 코드를 디코딩할 수 없습니다.');
+        }
+    }
+
+    // 스캔 버튼 클릭 시 QR 코드 디코딩 수행
+    document.getElementById('scan').addEventListener('click', function () {
+        const qrCodeImage = qrCodeContainer.querySelector('img');
+        if (qrCodeImage) {
+            decodeQRCode(qrCodeImage);
+        } else {
+            console.error('No QR code image found.');
+        }
+    });
+
+    // 이미지가 QR 코드인지 확인하는 함수
+    function isQRCode(image) {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = image.width;
+        canvas.height = image.height;
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        return jsQR(imageData.data, imageData.width, imageData.height) !== null;
+    }
+});
