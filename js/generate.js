@@ -56,3 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         downloadContainer.appendChild(downloadBtn);
     });
 });
+document.getElementById('checkbox').addEventListener('click', function () {
+    var checkbox = document.getElementById('agree');
+    checkbox.classList.toggle('checked');
+});

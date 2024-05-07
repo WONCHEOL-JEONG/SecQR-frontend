@@ -16,28 +16,31 @@
                     <p class="subtitle">Securely scan & block malicious QR codes</p>
                 </div>
             </div>
-            <div class="checkbox-container">
-                <input type="checkbox" id="block-url" />
-                <label for="block-url">url을 차단할까요?</label>
+            <div id="checkbox" class="checkbox-container">
+                <button id="agree" class="checkbox-check">
+                    <span class="checkmark"></span>
+                </button>
+                <span class="text">url을 차단할까요?</span>
             </div>
+
             <div class="button-container">
                 <button class="button scan-button" id="scan">
-                    <img src="/images/scan.png" alt="scan" class="scan-image" />
+                    <img src="/images/scan.svg" alt="scan" class="scan-image" />
                     <p class="scan-text">QR 스캔</p>
                 </button>
 
                 <button class="button document-button" id="document">
-                    <img src="/images/document.png" alt="document" class="document-image" />
-                    <p class="document-text">url 정보</p>
+                    <img src="/images/document.svg" alt="document" class="document-image" />
+                    <p class="document-text">URL 정보</p>
                 </button>
 
                 <button class="button qr-button" id="qrcode">
-                    <img src="/images/qr code.png" alt="qr" class="qr-image" />
+                    <img src="/images/qr code.svg" alt="qr" class="qr-image" />
                     <p class="qr-text">QR 생성</p>
                 </button>
 
                 <button class="button history-button" id="history">
-                    <img src="/images/history.png" alt="history" class="history-image" />
+                    <img src="/images/history.svg" alt="history" class="history-image" />
                     <p class="history-text">History</p>
                 </button>
             </div>

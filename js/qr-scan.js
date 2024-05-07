@@ -13,12 +13,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 클립보드 버튼 이벤트 핸들러
     document.querySelector('.clipboard-button').addEventListener('click', function () {
-        // 클립보드 버튼 클릭 시 실행될 코드
-        document.getElementById('pasteArea').style.display = 'block'; // pasteArea 요소를 표시
-        document.getElementById('clipboardImage').style.display = 'block'; // clipboardImage 요소를 표시
-        document.getElementById('canvas_for_ImageData').style.display = 'block'; // canvas_for_ImageData 요소를 표시
-        document.getElementById('decodeResult').style.display = 'block'; // decodeResult 요소를 표시
-        document.getElementById('button_OpenUrl').style.display = 'block'; // button_OpenUrl 요소를 표시
+        const pasteArea = document.getElementById('pasteArea');
+        const isPasteAreaVisible = pasteArea.style.display === 'block';
+
+        if (isPasteAreaVisible) {
+            // pasteArea가 보이는 경우, 숨김
+            pasteArea.style.display = 'none';
+        } else {
+            // pasteArea가 보이지 않는 경우, 표시
+            pasteArea.style.display = 'block';
+            // 기존에 qrCodeContainer에 표시된 사진이 있다면 삭제
+            const existingImage = document.querySelector('#qrCodeContainer img');
+            if (existingImage) {
+                existingImage.parentNode.removeChild(existingImage);
+            }
+            // 기존의 URL 입력 초기화
+            urlInput.value = '';
+        }
+    });
+
+    // 파일 업로드 버튼 클릭 시 클립보드 버튼이 보이는 요소를 숨김
+    document.getElementById('fileUploadButton').addEventListener('click', function () {
+        // 클립보드 버튼이 보이는 요소를 숨김
+        document.getElementById('pasteArea').style.display = 'none';
+        // 기존에 qrCodeContainer에 표시된 사진이 있다면 삭제
+        const existingImage = document.querySelector('#qrCodeContainer img');
+        if (existingImage) {
+            existingImage.parentNode.removeChild(existingImage);
+        }
+        // 파일 업로드를 초기화하여 동일한 파일을 선택할 수 있도록 함
+        fileInput.value = '';
     });
 
     const fileInput = document.getElementById('file-upload');
@@ -129,4 +153,59 @@ document.addEventListener('DOMContentLoaded', function () {
         const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
         return jsQR(imageData.data, imageData.width, imageData.height) !== null;
     }
+    document.getElementById('captureButton').addEventListener('click', function () {
+        // pasteArea 요소를 숨김
+        document.getElementById('pasteArea').style.display = 'none';
+        // 기존에 qrCodeContainer에 표시된 사진이 있다면 삭제
+        const existingImage = document.querySelector('#qrCodeContainer img');
+        if (existingImage) {
+            existingImage.parentNode.removeChild(existingImage);
+        }
+
+        // 현재 창의 스크린샷을 캡처
+        chrome.tabs.captureVisibleTab(null, { format: 'png' }, function (dataUrl) {
+            // 이미지 생성
+            var img = new Image();
+            img.src = dataUrl;
+            img.onload = function () {
+                // 이미지를 화면에 표시
+                document.getElementById('qrCodeContainer').appendChild(img);
+
+                // 캡처된 이미지에서 QR 코드 디코딩 및 URL 추출
+                decodeQRCodeFromImage(img);
+            };
+        });
+    });
+
+    function decodeQRCodeFromImage(image) {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = image.width;
+        canvas.height = image.height;
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        const code = jsQR(imageData.data, imageData.width, imageData.height);
+        if (code) {
+            // QR 코드 디코딩 성공 시 URL을 urlInput에 표시
+            urlInput.value = code.data;
+        } else {
+            urlInput.value = '';
+        }
+    }
+
+    document.getElementById('submitUrlButton').addEventListener('click', function () {
+        var url = document.getElementById('urlInput').value;
+        var isSafe = Math.random() < 0.5;
+        var header = document.querySelector('.header');
+
+        if (isSafe) {
+            header.style.backgroundColor = 'green';
+        } else {
+            header.style.backgroundColor = 'red';
+        }
+    });
+});
+document.getElementById('checkbox').addEventListener('click', function () {
+    var checkbox = document.getElementById('agree');
+    checkbox.classList.toggle('checked');
 });
