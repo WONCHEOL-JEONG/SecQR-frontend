@@ -12,5 +12,11 @@
         "default_popup": "html/main.html",
         "browser_style": false
     },
-    "permissions": ["tabs", "clipboardRead", "activeTab", "clipboardWrite", "storage"]
+    "permissions": ["tabs", "clipboardRead", "activeTab", "clipboardWrite", "storage"],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["/js/qr-scan.js"]
+        }
+    ]
 }

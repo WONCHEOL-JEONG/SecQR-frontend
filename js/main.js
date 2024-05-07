@@ -14,3 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
     addButtonClickHandler('qrcode', 'generate.html');
     addButtonClickHandler('history', 'history.html');
 });
+
+document.getElementById('checkbox').addEventListener('click', function () {
+    var checkbox = document.getElementById('agree');
+    checkbox.classList.toggle('checked');
+});

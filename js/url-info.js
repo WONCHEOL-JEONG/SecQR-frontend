@@ -46,3 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+document.getElementById('checkbox').addEventListener('click', function () {
+    var checkbox = document.getElementById('agree');
+    checkbox.classList.toggle('checked');
+});
