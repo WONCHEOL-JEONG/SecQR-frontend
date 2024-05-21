@@ -186,7 +186,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
         const code = jsQR(imageData.data, imageData.width, imageData.height);
         if (code) {
-            // QR 코드 디코딩 성공 시 URL을 urlInput에 표시
             urlInput.value = code.data;
         } else {
             urlInput.value = '';
@@ -204,8 +203,23 @@ document.addEventListener('DOMContentLoaded', function () {
             header.style.backgroundColor = 'red';
         }
     });
-});
-document.getElementById('checkbox').addEventListener('click', function () {
-    var checkbox = document.getElementById('agree');
-    checkbox.classList.toggle('checked');
+    document.getElementById('checkbox').addEventListener('click', function () {
+        var checkbox = document.getElementById('agree');
+        checkbox.classList.toggle('checked');
+
+        if (checkbox.classList.contains('checked')) {
+            var url = document.getElementById('urlInput').value;
+            if (url) {
+                if (confirm('Do you want to block this URL?')) {
+                    chrome.runtime.sendMessage({ action: 'blockUrl', url: url }, function (response) {
+                        if (response && response.success) {
+                            alert('URL has been successfully blocked.');
+                        } else {
+                            alert('Failed to block URL.');
+                        }
+                    });
+                }
+            }
+        }
+    });
 });
