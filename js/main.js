@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 각 버튼에 대한 이벤트 핸들러 추가
     addButtonClickHandler('scan', 'qr-scan.html');
     addButtonClickHandler('document', 'url-info.html');
-    addButtonClickHandler('qrcode', 'generate.html');
+    addButtonClickHandler('qrcode', 'qr-generate.html');
     addButtonClickHandler('history', 'history.html');
 });
 
