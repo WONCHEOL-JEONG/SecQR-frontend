@@ -9,41 +9,63 @@
     <body>
         <div id="SecQR-popup"></div>
         <div class="container">
-            <div class="header">
-                <img src="/icons/logo.png" alt="SecQR Logo" class="logo" />
-                <div class="title-container">
-                    <p class="title">SecQR</p>
-                    <p class="subtitle">Securely scan & block malicious QR codes</p>
+            <div class="main-title-container">
+                <div class="main-title">SecQR</div>
+                <img src="/images/Topnav-open-url.svg" alt="main-open-url" class="main-open-url" />
+            </div>
+            <div class="main-URL">
+                <div class="main-Block-URL-button">
+                    <img src="/images/Block-URL.svg" alt="Block-URL" class="main-Block-URL" />
+                </div>
+                <div class="main-URL-input-container">
+                    <input type="text" class="main-url-input" placeholder="Enter URL" />
+                    <div class="main-Search-button">
+                        <img src="/images/Search.svg" alt="Search" class="main-Search" />
+                    </div>
                 </div>
             </div>
-            <div id="checkbox" class="checkbox-container">
-                <button id="agree" class="checkbox-check">
-                    <span class="checkmark"></span>
-                </button>
-                <span class="text">url을 차단할까요?</span>
+            <div class="main-container">
+                <div>
+                    <div class="main-qr-scan-container">
+                        <div class="main-qr-scan-sub-container">
+                        <div class="main-qr-image-container">
+                            <img src="/images/qr-scan-blue.svg" alt="qr-scan" class="main-qr-scan-image" />
+                        </div>
+                        <div class="main-qr-scan-title">QR Scan</div>
+                    </div>
+                </div>
+                <div class="main-qr-generate-container">
+                    <div class="main-qr-generate-sub-container">
+                        <div class="main-qr-generate-image-container">
+                            <img src="/images/qr-generate-green.svg" alt="qr-generate" class="main-qr-generate-image" />
+                        </div>
+                        <div class="main-qr-generate-title">QR Generate</div>
+                    </div>
+                </div></div>
+                <div>
+                <div class="main-url-info-container">
+                    <div class="main-url-info-sub-container">
+                        <div class="main-url-info-image-container">
+                            <img src="/images/url-info-orange.svg" alt="url-info" class="main-url-info-image" />
+                        </div>
+                        <div class="main-url-info-title">URL Info</div>
+                    </div>
+                </div>
+                
+                <div class="main-history-container">
+                    <div class="main-history-sub-container">
+                        <div class="main-history-image-container">
+                            <img src="/images/history-purple.svg" alt="history" class="main-history-image" />
+                        </div>
+                        <div class="main-history-title">History</div>
+                    </div>
+                </div>
             </div>
-
-            <div class="button-container">
-                <button class="button scan-button" id="scan">
-                    <img src="/images/scan.svg" alt="scan" class="scan-image" />
-                    <p class="scan-text">QR 스캔</p>
-                </button>
-
-                <button class="button document-button" id="document">
-                    <img src="/images/document.svg" alt="document" class="document-image" />
-                    <p class="document-text">URL 정보</p>
-                </button>
-
-                <button class="button qr-button" id="qrcode">
-                    <img src="/images/qr code.svg" alt="qr" class="qr-image" />
-                    <p class="qr-text">QR 생성</p>
-                </button>
-
-                <button class="button history-button" id="history">
-                    <img src="/images/history.svg" alt="history" class="history-image" />
-                    <p class="history-text">History</p>
-                </button>
-            </div>
+            <!-- <div class="navigation">
+                <img src="/images/home.svg" alt="home" class="navigation-home-image" />
+                <img src="/images/qr-scan-blue.svg" alt="qr-scan" class="navigation-qr-scan-image" />
+                <img src="/images/history-purple.svg" alt="history" class="navigation-history-image" />
+            </div> -->
         </div>
 
         <script src="../js/main.js"></script>
