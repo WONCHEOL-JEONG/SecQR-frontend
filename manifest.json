@@ -1,28 +1,31 @@
 {
-    "manifest_version": 3,
-    "name": "SecQR",
-    "version": "1.0",
-    "description": "Securely scan & block malicious QR codes",
-    "icons": {
-        "128": "icons/icon.png"
-    },
-    "action": {
-        "default_icon": "icons/icon.png",
-        "default_title": "SecQR",
-        "default_popup": "html/main.html",
-        "browser_style": false
-    },
-    "permissions": [
-        "declarativeNetRequest",
-        "declarativeNetRequestWithHostAccess",
-        "tabs",
-        "clipboardRead",
-        "clipboardWrite",
-        "activeTab",
-        "storage"
-    ],
-    "background": {
-        "service_worker": "background.js"
-    },
-    "host_permissions": ["<all_urls>"]
+  "manifest_version": 3,
+  "name": "SecQR",
+  "version": "1.0",
+  "description": "Securely scan & block malicious QR codes",
+  "icons": {
+    "128": "icons/icon.png"
+  },
+  "action": {
+    "default_icon": "icons/icon.png",
+    "default_title": "SecQR",
+    "default_popup": "html/main.html",
+    "browser_style": false
+  },
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "declarativeContent",
+    "declarativeNetRequest",
+    "webNavigation",
+    "tabs",
+    "clipboardRead",
+    "clipboardWrite",
+    "activeTab",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": ["<all_urls>"]
 }
