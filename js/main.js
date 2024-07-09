@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 페이지 네비게이션 설정
   navigateToPage(".main-qr-scan-container", "image-upload.html");
-  navigateToPage(".main-qr-generate-container", "qr-generate.html");
+  navigateToPage(".main-qr-generate-container", "generate.html");
   navigateToPage(".main-url-info-container", "url-info.html");
   navigateToPage(".main-history-container", "history.html");
 

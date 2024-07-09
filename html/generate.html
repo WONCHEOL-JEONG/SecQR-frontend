@@ -5,57 +5,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>SecQR</title>
         <link rel="stylesheet" href="../css/generate.css" />
-        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     </head>
     <body>
-        <div id="SecQR-popup"></div>
         <div class="container">
-            <div class="header">
-                <img src="/icons/logo.png" alt="SecQR Logo" class="logo" />
-                <div class="title-container">
-                    <p class="title">SecQR</p>
-                    <p class="subtitle">Securely scan & block malicious QR codes</p>
+            <div class="Topnav">
+                <div class="Topnav-left-container">
+                    <img src="/images/Topnav-left-arrow.svg" alt="Topnav-left-arrow" class="Topnav-left-arrow" />
+                </div>
+                <div class="Topnav-title">Generate QR</div>
+                <div class="Topnav-right-container">
+                    <img src="/images/Topnav-open-url.svg" alt="Topnav-open-url" class="Topnav-open-url" />
                 </div>
             </div>
-            <div id="checkbox" class="checkbox-container">
-                <button id="agree" class="checkbox-check">
-                    <span class="checkmark"></span>
-                </button>
-                <span class="text">url을 차단할까요?</span>
+            <div class="generate-URL">
+                <div class="generate-URL-input-container">
+                    <input type="text" class="generate-url-input" placeholder="Enter URL" />
+                    <div class="generate-Download-button">
+                        <img src="/images/download-blue.svg" alt="Download" class="generate-Download" />
+                    </div>
+                </div>
             </div>
-            <div class="button-container">
-                <button class="button scan-button" id="scan">
-                    <img src="/images/scan.svg" alt="scan" class="scan-image" />
-                    <p class="scan-text">QR 스캔</p>
-                </button>
-
-                <button class="button document-button" id="document">
-                    <img src="/images/document.svg" alt="document" class="document-image" />
-                    <p class="document-text">URL 정보</p>
-                </button>
-
-                <button class="button qr-button" id="qrcode">
-                    <img src="/images/qr code.svg" alt="qr" class="qr-image" />
-                    <p class="qr-text">QR 생성</p>
-                </button>
-
-                <button class="button history-button" id="history">
-                    <img src="/images/history.svg" alt="history" class="history-image" />
-                    <p class="history-text">History</p>
-                </button>
+            <div class="Image">
+                <img src="/images/Image-placeholder.svg" alt="Image-placeholder" class="Image-placeholder" />
             </div>
-            <div class="url-input-container">
-                <input type="text" id="urlInput" placeholder="URL을 입력하세요" class="url-input" />
-                <button id="generateBtn" class="generateBtn">생성</button>
-            </div>
-            <div id="qrContainer">
-                <div id="qrCodeContainer"></div>
-                <div id="downloadContainer"></div>
-            </div>
+            <!-- <div class="generate-Download">
+                Download
+            </div> -->
         </div>
 
-        <script src="../js/qrcode.min.js"></script>
-
-        <script src="../js/generate.js"></script>
+        <script src="../js/jsQR.js"></script>
+        <script src="../js/image-upload.js"></script>
     </body>
 </html>
