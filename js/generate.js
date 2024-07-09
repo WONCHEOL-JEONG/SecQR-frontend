@@ -1,62 +1,44 @@
-// generate.js
-
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('scan').addEventListener('click', function () {
-        window.location.href = 'qr-scan.html';
+document.addEventListener('DOMContentLoaded', function() {
+    // Navigate to main.html when left-arrow is clicked
+    document.querySelector('.Topnav-left-arrow').addEventListener('click', function() {
+        window.location.href = 'main.html';
     });
 
-    document.getElementById('document').addEventListener('click', function () {
-        window.location.href = 'url-info.html';
-    });
-
-    document.getElementById('qrcode').addEventListener('click', function () {
-        window.location.href = 'generate.html';
-    });
-
-    document.getElementById('history').addEventListener('click', function () {
-        // 버튼 4에 대한 동작
-    });
-    const urlInput = document.getElementById('urlInput');
-    const generateBtn = document.getElementById('generateBtn');
-    const qrCodeContainer = document.getElementById('qrCodeContainer');
-    const downloadContainer = document.getElementById('downloadContainer');
-
-    generateBtn.addEventListener('click', function () {
-        const url = urlInput.value.trim();
-        if (url === '') {
-            alert('URL을 입력하세요.');
-            return;
+    // Open the URL in a new window when open-url icon is clicked
+    document.querySelector('.Topnav-open-url').addEventListener('click', function() {
+        const url = document.querySelector('.generate-url-input').value;
+        if (url) {
+            window.open(url, '_blank');
+        } else {
+            alert('Please enter a valid URL.');
         }
-        // 둥근 네모 박스 생성
-        const roundedBox = document.createElement('div');
-        roundedBox.classList.add('rounded-box');
-
-        // QR 코드 생성
-        const qrCode = new QRCode(roundedBox, {
-            text: url,
-            width: 128,
-            height: 128,
-            colorDark: '#000000',
-            colorLight: '#ffffff',
-            correctLevel: QRCode.CorrectLevel.H,
-        });
-
-        // 기존 QR 코드 및 다운로드 버튼 제거
-        qrCodeContainer.innerHTML = '';
-        downloadContainer.innerHTML = '';
-
-        // 둥근 네모 박스에 QR 코드 추가
-        qrCodeContainer.appendChild(roundedBox);
-
-        // 다운로드 버튼 생성
-        const downloadBtn = document.createElement('a');
-        downloadBtn.textContent = '다운로드';
-        downloadBtn.href = qrCode._el.firstChild.toDataURL('image/png');
-        downloadBtn.download = 'qr_code.png';
-        downloadContainer.appendChild(downloadBtn);
     });
-});
-document.getElementById('checkbox').addEventListener('click', function () {
-    var checkbox = document.getElementById('agree');
-    checkbox.classList.toggle('checked');
+
+    // Generate QR code and download it when generate-download-button is clicked
+    document.querySelector('.generate-Download-button').addEventListener('click', function() {
+        const url = document.querySelector('.generate-url-input').value;
+        if (url) {
+            // Generate QR code
+            const qrCodeContainer = document.createElement('div');
+            const qrCode = new QRCode(qrCodeContainer, {
+                text: url,
+                width: 128,
+                height: 128
+            });
+
+            // Wait for QR code to be generated
+            setTimeout(() => {
+                const qrImage = qrCodeContainer.querySelector('img').src;
+                document.querySelector('.Image-placeholder').src = qrImage;
+
+                // Create a link to download the image
+                const downloadLink = document.createElement('a');
+                downloadLink.href = qrImage;
+                downloadLink.download = 'qr-code.png';
+                downloadLink.click();
+            }, 500);
+        } else {
+            alert('Please enter a valid URL.');
+        }
+    });
 });
