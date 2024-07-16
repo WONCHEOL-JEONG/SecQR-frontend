@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Generate QR code and download it when generate-download-button is clicked
-    document.querySelector('.generate-Download-button').addEventListener('click', function() {
+    // Function to generate QR code
+    function generateQRCode() {
         const url = document.querySelector('.generate-url-input').value;
         if (url) {
             // Generate QR code
@@ -30,15 +30,33 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 const qrImage = qrCodeContainer.querySelector('img').src;
                 document.querySelector('.Image-placeholder').src = qrImage;
-
-                // Create a link to download the image
-                const downloadLink = document.createElement('a');
-                downloadLink.href = qrImage;
-                downloadLink.download = 'qr-code.png';
-                downloadLink.click();
             }, 500);
         } else {
             alert('Please enter a valid URL.');
+        }
+    }
+
+    // Function to download the QR code image
+    function downloadQRCode() {
+        const qrImageSrc = document.querySelector('.Image-placeholder').src;
+        if (qrImageSrc && qrImageSrc !== '/images/Image-placeholder.svg') {
+            // Create a link to download the image
+            const downloadLink = document.createElement('a');
+            downloadLink.href = qrImageSrc;
+            downloadLink.download = 'qr-code.png';
+            downloadLink.click();
+        } else {
+            alert('No QR code to download.');
+        }
+    }
+
+    // Generate QR code when generate-download-button is clicked
+    document.querySelector('.generate-Download-button').addEventListener('click', downloadQRCode);
+
+    // Generate QR code when Enter key is pressed in the input field
+    document.querySelector('.generate-url-input').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            generateQRCode();
         }
     });
 });
