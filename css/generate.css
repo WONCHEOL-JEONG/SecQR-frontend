@@ -10,6 +10,7 @@ body {
   margin: 0;
   -ms-overflow-style: none;
   font-family: "Pretendard-Regular";
+  height: 600px;
 }
 
 ::-webkit-scrollbar {
