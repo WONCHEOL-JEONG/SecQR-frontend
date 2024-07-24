@@ -1,0 +1,15 @@
+.blocked-url-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  .blocked-url-list li {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+  }
+  .remove-button {
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
